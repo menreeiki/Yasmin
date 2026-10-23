@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yasmin Pâtisserie — Кондитерская</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Trebuchet MS', Arial, sans-serif;
+        background: #fffaf7;
+        color: #49352f;
+      }
+
+      header {
+        background: #fff;
+        padding: 20px 8%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 15px #70452b12;
+      }
+
+      .logo {
+        font-family: Georgia, serif;
+        font-size: 28px;
+        color: #a65f6b;
+        font-weight: bold;
+      }
+
+      nav {
+        display: flex;
+        gap: 25px;
+      }
+
+      nav a {
+        text-decoration: none;
+        color: #49352f;
+        font-size: 14px;
+      }
+
+      nav a:hover {
+        color: #c77b89;
+      }
+
+      .hero {
+        min-height: 540px;
+        display: flex;
+        align-items: center;
+        padding: 70px 8%;
+        background: linear-gradient(
+          90deg,
+          #fff0e9 0%,
+          #fce4df 55%,
+          #efd0c4 100%
+        );
+        gap: 40px;
+      }
+
+      .hero-text {
+        flex: 1;
+      }
+
+      .eyebrow {
+        color: #a65f6b;
+        letter-spacing: 4px;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        font-family: Georgia, serif;
+        font-size: clamp(42px, 6vw, 72px);
+        line-height: 1.1;
+        margin: 22px 0;
+        font-weight: normal;
+      }
+
+      .hero p {
+        line-height: 1.8;
+        color: #795f56;
+        max-width: 450px;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #a65f6b;
+        color: white;
+        padding: 15px 28px;
+        border: none;
+        border-radius: 30px;
+        text-decoration: none;
+        cursor: pointer;
+        margin-top: 25px;
+        font-size: 14px;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        background: #80434f;
+        transform: translateY(-2px);
+      }
+
+      .hero-image {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 390px;
+        object-fit: cover;
+        border-radius: 180px 180px 15px 15px;
+        box-shadow: 0 15px 40px #80434f20;
+      }
+
+      section {
+        padding: 80px 8%;
+      }
+
+      .section-heading {
+        text-align: center;
+        margin-bottom: 45px;
+      }
+
+      .section-heading h2 {
+        font-family: Georgia, serif;
+        font-size: 42px;
+        font-weight: normal;
+        margin-bottom: 12px;
+      }
+
+      .section-heading p {
+        color: #927a70;
+        line-height: 1.7;
+      }
+
+      .filters {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 35px;
+      }
+
+      .filter-btn {
+        background: white;
+        color: #8e5a60;
+        border: 1px solid #e8c8c8;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: #a65f6b;
+        color: white;
+      }
+
+      .catalog {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
+      }
+
+      .product {
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 5px 25px #5933220b;
+        transition: 0.3s;
+      }
+
+      .product:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 30px #59332216;
+      }
+
+      .product img {
+        width: 100%;
+        height: 235px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .product-info {
+        padding: 22px;
+      }
+
+      .product-info h3 {
+        font-family: Georgia, serif;
+        font-size: 23px;
+        font-weight: normal;
+        margin-bottom: 10px;
+      }
+
+      .product-info p {
+        color: #90796f;
+        font-size: 13px;
+        line-height: 1.6;
+        min-height: 42px;
+      }
+
+      .product-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .price {
+        color: #a65f6b;
+        font-size: 19px;
+        font-weight: bold;
+      }
+
+      .add-btn {
+        background: #f8e8e5;
+        color: #934f5b;
+        border: none;
+        padding: 10px 14px;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+
+      .add-btn:hover {
+        background: #eac5c5;
+      }
+
+      .about {
+        background: #f8eae5;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about img {
+        width: 45%;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about h2 {
+        font-family: Georgia, serif;
+        font-size: 40px;
+        font-weight: normal;
+        margin-bottom: 20px;
+      }
+
+      .about p {
+        line-height: 1.9;
+        color: #795f56;
+        margin-bottom: 12px;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-top: 35px;
+      }
+
+      .feature {
+        text-align: center;
+        padding: 25px 15px;
+        background: white;
+        border-radius: 12px;
+      }
+
+      .feature span {
+        font-size: 30px;
+      }
+
+      .feature h3 {
+        margin: 12px 0;
+        font-family: Georgia, serif;
+      }
+
+      .feature p {
+        font-size: 13px;
+        color: #90796f;
+        line-height: 1.6;
+      }
+
+      .order-section {
+        text-align: center;
+        background: #a65f6b;
+        color: white;
+      }
+
+      .order-section h2 {
+        font-family: Georgia, serif;
+        font-size: 42px;
+        font-weight: normal;
+        margin-bottom: 15px;
+      }
+
+      .order-section p {
+        line-height: 1.8;
+      }
+
+      .order-section .btn {
+        background: white;
+        color: #a65f6b;
+      }
+
+      .contacts {
+        background: #fffaf7;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        text-align: center;
+      }
+
+      .contact-card {
+        background: white;
+        padding: 30px 18px;
+        border: 1px solid #f0e1da;
+        border-radius: 12px;
+      }
+
+      .contact-card .emoji {
+        font-size: 28px;
+      }
+
+      .contact-card h3 {
+        margin: 15px 0 10px;
+        font-family: Georgia, serif;
+      }
+
+      .contact-card p {
+        color: #90796f;
+        font-size: 14px;
+        line-height: 1.8;
+        overflow-wrap: anywhere;
+      }
+
+      .contact-card a {
+        color: #a65f6b;
+      }
+
+      .cart-bar {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 200;
+        background: #a65f6b;
+        color: white;
+        border-radius: 30px;
+        padding: 14px 22px;
+        box-shadow: 0 5px 20px #59332230;
+        cursor: pointer;
+        border: none;
+        font-size: 14px;
+      }
+
+      footer {
+        background: #49352f;
+        color: #f8eae5;
+        text-align: center;
+        padding: 28px 15px;
+        line-height: 1.8;
+        font-size: 13px;
+      }
+
+      @media (max-width: 850px) {
+        header {
+          padding: 18px 5%;
+          flex-wrap: wrap;
+          gap: 15px;
+        }
+
+        nav {
+          gap: 14px;
+          flex-wrap: wrap;
+        }
+
+        .hero {
+          padding: 55px 6%;
+        }
+
+        .catalog {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .about {
+          padding: 60px 6%;
+          gap: 25px;
+        }
+      }
+
+      @media (max-width: 560px) {
+        header {
+          justify-content: center;
+        }
+
+        .logo {
+          width: 100%;
+          text-align: center;
+        }
+
+        nav {
+          justify-content: center;
+          gap: 12px;
+        }
+
+        nav a {
+          font-size: 12px;
+        }
+
+        .hero {
+          flex-direction: column;
+          text-align: center;
+          padding: 45px 6%;
+        }
+
+        .hero p {
+          margin: auto;
+        }
+
+        .hero-image {
+          width: 100%;
+        }
+
+        .hero-image img {
+          height: 290px;
+        }
+
+        section {
+          padding: 60px 5%;
+        }
+
+        .section-heading h2,
+        .about h2,
+        .order-section h2 {
+          font-size: 32px;
+        }
+
+        .catalog {
+          grid-template-columns: 1fr;
+        }
+
+        .product img {
+          height: 250px;
+        }
+
+        .about {
+          flex-direction: column;
+        }
+
+        .about img {
+          width: 100%;
+          height: 260px;
+        }
+
+        .features,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">Yasmin Pâtisserie</div>
+      <nav>
+        <a href="#home">Главная</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О нас</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-text">
+          <span class="eyebrow">Sweet moments every day</span>
+          <h1>Маленькие десерты. Большое счастье.</h1>
+          <p>
+            Добро пожаловать в Yasmin — уютный мир нежных пирожных, воздушных
+            тортов и сладких подарков, созданных с любовью.
+          </p>
+          <a href="#catalog" class="btn">Посмотреть каталог →</a>
+        </div>
+
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1000&q=85"
+            alt="Нежный десерт"
+          />
+        </div>
+      </section>
+
+      <section id="catalog">
+        <div class="section-heading">
+          <span class="eyebrow">Our sweet collection</span>
+          <h2>Каталог десертов</h2>
+          <p>Выбери любимое лакомство и добавь его в свою корзину.</p>
+        </div>
+
+        <div class="filters">
+          <button class="filter-btn active" data-filter="all">
+            Все десерты
+          </button>
+          <button class="filter-btn" data-filter="cakes">Пирожные</button>
+          <button class="filter-btn" data-filter="cheese">Чизкейки</button>
+          <button class="filter-btn" data-filter="macarons">Макаронс</button>
+          <button class="filter-btn" data-filter="other">Другое</button>
+        </div>
+
+        <div class="catalog" id="productCatalog">
+          <article class="product" data-category="cakes">
+            <img
+              src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80"
+              alt="Шоколадный торт"
+            />
+            <div class="product-info">
+              <h3>Chocolate Dream</h3>
+              <p>Насыщенный шоколад, нежный крем и воздушный бисквит.</p>
+              <div class="product-bottom">
+                <span class="price">2 900 ₸</span>
+                <button
+                  class="add-btn"
+                  data-name="Chocolate Dream"
+                  data-price="2900"
+                >
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="cakes">
+            <img
+              src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=700&q=80"
+              alt="Клубничный десерт"
+            />
+            <div class="product-info">
+              <h3>Strawberry Kiss</h3>
+              <p>Клубничный мусс, сливочный крем и ягодная начинка.</p>
+              <div class="product-bottom">
+                <span class="price">2 500 ₸</span>
+                <button
+                  class="add-btn"
+                  data-name="Strawberry Kiss"
+                  data-price="2500"
+                >
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="cheese">
+            <img
+              src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=700&q=80"
+              alt="Чизкейк"
+            />
+            <div class="product-info">
+              <h3>New York Cheesecake</h3>
+              <p>Классический сливочный чизкейк на песочной основе.</p>
+              <div class="product-bottom">
+                <span class="price">2 700 ₸</span>
+                <button
+                  class="add-btn"
+                  data-name="New York Cheesecake"
+                  data-price="2700"
+                >
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="cakes">
+            <img
+              src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80"
+              alt="Тирамису"
+            />
+            <div class="product-info">
+              <h3>Tiramisu</h3>
+              <p>Итальянский десерт с маскарпоне, кофе и какао.</p>
+              <div class="product-bottom">
+                <span class="price">2 400 ₸</span>
+                <button class="add-btn" data-name="Tiramisu" data-price="2400">
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="macarons">
+            <img
+              src="https://images.unsplash.com/photo-1569864358642-9d1684040f43?auto=format&fit=crop&w=700&q=80"
+              alt="Макаронс"
+            />
+            <div class="product-info">
+              <h3>Macaron Box</h3>
+              <p>
+                Набор из шести нежных миндальных пирожных с разными вкусами.
+              </p>
+              <div class="product-bottom">
+                <span class="price">4 200 ₸</span>
+                <button
+                  class="add-btn"
+                  data-name="Macaron Box"
+                  data-price="4200"
+                >
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="cakes">
+            <img
+              src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=700&q=80"
+              alt="Красный бархат"
+            />
+            <div class="product-info">
+              <h3>Red Velvet</h3>
+              <p>Красный бархатный бисквит и нежный крем-чиз.</p>
+              <div class="product-bottom">
+                <span class="price">2 800 ₸</span>
+                <button
+                  class="add-btn"
+                  data-name="Red Velvet"
+                  data-price="2800"
+                >
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="cheese">
+            <img
+              src="https://images.unsplash.com/photo-1524351199678-941a58a3df50?auto=format&fit=crop&w=700&q=80"
+              alt="Ягодный чизкейк"
+            />
+            <div class="product-info">
+              <h3>Berry Cheesecake</h3>
+              <p>Сливочный чизкейк с ягодным соусом и свежими ягодами.</p>
+              <div class="product-bottom">
+                <span class="price">3 100 ₸</span>
+                <button
+                  class="add-btn"
+                  data-name="Berry Cheesecake"
+                  data-price="3100"
+                >
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="other">
+            <img
+              src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=80"
+              alt="Пончики"
+            />
+            <div class="product-info">
+              <h3>Sweet Donuts</h3>
+              <p>Мягкие пончики с глазурью и сладкими посыпками.</p>
+              <div class="product-bottom">
+                <span class="price">950 ₸</span>
+                <button
+                  class="add-btn"
+                  data-name="Sweet Donuts"
+                  data-price="950"
+                >
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product" data-category="other">
+            <img
+              src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=700&q=80"
+              alt="Кексы"
+            />
+            <div class="product-info">
+              <h3>Vanilla Cupcakes</h3>
+              <p>Ванильные капкейки с воздушным кремом. Цена за штуку.</p>
+              <div class="product-bottom">
+                <span class="price">1 200 ₸</span>
+                <button
+                  class="add-btn"
+                  data-name="Vanilla Cupcakes"
+                  data-price="1200"
+                >
+                  + Добавить
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <img
+          src="https://images.unsplash.com/photo-1556217477-d325251ece38?auto=format&fit=crop&w=900&q=80"
+          alt="Приготовление десертов"
+        />
+
+        <div class="about-text">
+          <span class="eyebrow">A little story</span>
+          <h2>С любовью к каждому кусочку</h2>
+          <p>
+            Yasmin Pâtisserie — концепция кондитерской, где каждый десерт
+            превращает обычный день в маленький праздник.
+          </p>
+          <p>
+            Мы вдохновляемся французской кондитерской культурой, красивой
+            подачей и сочетанием любимых вкусов.
+          </p>
+          <p>
+            От нежных муссов до насыщенных шоколадных пирожных — здесь найдётся
+            сладость для каждого.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <span class="eyebrow">Why Yasmin?</span>
+          <h2>Наша философия</h2>
+          <p>Каждая деталь имеет значение.</p>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <span>🍓</span>
+            <h3>Любимые вкусы</h3>
+            <p>Ягодные, шоколадные и сливочные сочетания.</p>
+          </div>
+          <div class="feature">
+            <span>🎀</span>
+            <h3>Красивая подача</h3>
+            <p>Десерты, которые приятно дарить и фотографировать.</p>
+          </div>
+          <div class="feature">
+            <span>🧁</span>
+            <h3>Для любого повода</h3>
+            <p>Сладкие комплименты, встречи и особенные дни.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="order-section">
+        <h2>Добавим немного сладости?</h2>
+        <p>Собери любимые десерты в корзину и подготовь заказ.</p>
+        <a href="#catalog" class="btn">Выбрать десерты</a>
+      </section>
+
+      <section class="contacts" id="contacts">
+        <div class="section-heading">
+          <span class="eyebrow">Come say hello</span>
+          <h2>Контакты</h2>
+          <p>Будем рады видеть тебя в Yasmin Pâtisserie!</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="emoji">📍</div>
+            <h3>Наш адрес</h3>
+            <p>
+              Астана, Казахстан<br />Адрес необходимо уточнить перед открытием.
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <div class="emoji">✉️</div>
+            <h3>Электронная почта</h3>
+            <p>
+              <a href="mailto:hello@yasmin-patisserie.kz"
+                >hello@yasmin-patisserie.kz</a
+              ><br />Демонстрационный адрес
+            </p>
+          </div>
+
+          <div class="contact-card">
+            <div class="emoji">🕒</div>
+            <h3>Часы работы</h3>
+            <p>
+              Понедельник — воскресенье<br />10:00 – 20:00<br />Демонстрационное
+              расписание
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button class="cart-bar" id="cartButton">
+      🛍 Корзина: <span id="cartTotal">0</span> ₸
+    </button>
+
+    <footer>
+      <div class="logo" style="color: #f2c6cc; margin-bottom: 10px">
+        Yasmin Pâtisserie
+      </div>
+      <p>Создано с любовью к десертам ♡</p>
+      <p>© <span id="year"></span> Yasmin Pâtisserie. Все права защищены.</p>
+      <p>
+        Учебный демонстрационный сайт. Адрес, цены и контакты требуют
+        подтверждения.
+      </p>
+    </footer>
+
+    <script>
+      const cart = {};
+
+      const countElement = document.getElementById('cartCount');
+      const totalElement = document.getElementById('cartTotal');
+
+      function updateCart() {
+        let count = 0;
+        let total = 0;
+
+        for (const item of Object.values(cart)) {
+          count += item.quantity;
+          total += item.price * item.quantity;
+        }
+
+        countElement.textContent = count;
+        totalElement.textContent = total.toLocaleString('ru-RU');
+      }
+
+      document.querySelectorAll('.add-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          const name = button.dataset.name;
+          const price = Number(button.dataset.price);
+
+          if (!cart[name]) {
+            cart[name] = {
+              price: price,
+              quantity: 0,
+            };
+          }
+
+          cart[name].quantity++;
+          updateCart();
+
+          const originalText = button.textContent;
+          button.textContent = '✓ Добавлено';
+
+          setTimeout(() => {
+            button.textContent = originalText;
+          }, 900);
+        });
+      });
+
+      document.getElementById('cartButton').addEventListener('click', () => {
+        const items = Object.entries(cart);
+
+        if (items.length === 0) {
+          alert('Твоя корзина пока пуста. Выбери что-нибудь вкусное! 🍰');
+          return;
+        }
+
+        let message = 'ТВОЙ ЗАКАЗ — YASMIN PATISSERIE\n\n';
+        let total = 0;
+
+        items.forEach(([name, item]) => {
+          const subtotal = item.price * item.quantity;
+          total += subtotal;
+
+          message += `${name} × ${item.quantity} — ${subtotal.toLocaleString(
+            'ru-RU'
+          )} ₸\n`;
+        });
+
+        message += `\nИТОГО: ${total.toLocaleString('ru-RU')} ₸`;
+        message +=
+          '\n\nЭто демонстрационная корзина. Онлайн-оплата и отправка заказа пока не подключены.';
+
+        alert(message);
+      });
+
+      document.querySelectorAll('.filter-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach((btn) => {
+            btn.classList.remove('active');
+          });
+
+          button.classList.add('active');
+
+          const category = button.dataset.filter;
+
+          document.querySelectorAll('.product').forEach((product) => {
+            product.style.display =
+              category === 'all' || product.dataset.category === category
+                ? ''
+                : 'none';
+          });
+        });
+      });
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
